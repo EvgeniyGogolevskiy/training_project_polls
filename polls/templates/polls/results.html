@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link type="text/css" href="{% static 'polls/css/bootstrap.min.css' %}" rel="stylesheet"/>
+    <title>Title</title>
+</head>
+<body>
+<h1 class="ms-5 mt-3">{{ question.question_text }}</h1>
+
+<ul class="ms-5 nav flex-column">
+{% for choice in question.choice_set.all %}
+    <li class="nav-item mb-2">{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+{% endfor %}
+</ul>
+
+<a class="ms-5 link-success" href="{% url 'polls:detail' question.id %}">Vote again?</a>
+</body>
+</html>

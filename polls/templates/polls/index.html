@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link type="text/css" href="{% static 'polls/css/bootstrap.min.css' %}" rel="stylesheet"/>
+    <title>Title</title>
+</head>
+<body>
+<h1 class="m-5">Великий опросник</h1>
+{% if latest_question_list %}
+    <ul class="ms-5 nav flex-column">
+    {% for question in latest_question_list %}
+        <li class="nav-item mb-2"><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+</body>
+</html>
